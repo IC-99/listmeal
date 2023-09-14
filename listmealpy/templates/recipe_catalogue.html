@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% block section %}
+<div class="columns">
+    <div class="column"></div>
+    <div class="column is-one-third">
+        <div>
+            <h2 class="title">Catalogo delle ricette</h2>
+            <p>  </p>
+        </div>
+        
+        <div style="margin: 10pt">
+            <label class="label">Antipasti:</label>
+                {% for course in appetizers %}
+                    <div>
+                        <div><b>{{course["name"]}}</b> ({{course["typology"]}}, {{course["difficulty"]}})</div>
+                        {% for ingredient in course["ingredients"] %}
+                        <div>- {{ingredient["name"]}}: {{ingredient["amount"]}} {{ingredient["unit"]}}</div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+        </div>
+        <div style="margin: 10pt">
+            <label class="label">Primi piatti:</label>
+                {% for course in first_courses %}
+                    <div>
+                        <div><b>{{course["name"]}}</b> ({{course["typology"]}}, {{course["difficulty"]}})</div>
+                        {% for ingredient in course["ingredients"] %}
+                        <div>- {{ingredient["name"]}}: {{ingredient["amount"]}} {{ingredient["unit"]}}</div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+        </div>
+        <div style="margin: 10pt">
+            <label class="label">Secondi piatti:</label>
+                {% for course in second_courses %}
+                    <div>
+                        <div><b>{{course["name"]}}</b> ({{course["typology"]}}, {{course["difficulty"]}})</div>
+                        {% for ingredient in course["ingredients"] %}
+                        <div>- {{ingredient["name"]}}: {{ingredient["amount"]}} {{ingredient["unit"]}}</div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+        </div>
+        <div style="margin: 10pt">
+            <label class="label">Contorni:</label>
+                {% for course in side_courses %}
+                    <div>
+                        <div><b>{{course["name"]}}</b> ({{course["typology"]}}, {{course["difficulty"]}})</div>
+                        {% for ingredient in course["ingredients"] %}
+                        <div>- {{ingredient["name"]}}: {{ingredient["amount"]}} {{ingredient["unit"]}}</div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+        </div>
+        <div style="margin: 10pt">
+            <label class="label">Dolci:</label>
+                {% for course in desserts %}
+                    <div>
+                        <div><b>{{course["name"]}}</b> ({{course["typology"]}}, {{course["difficulty"]}})</div>
+                        {% for ingredient in course["ingredients"] %}
+                        <div>- {{ingredient["name"]}}: {{ingredient["amount"]}} {{ingredient["unit"]}}</div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+        </div>
+
+        <div style="margin: 10pt">
+            <a href="{{ url_for('add_recipe')}}">
+                <button class="button is-link">aggiungi una ricetta</button>
+            </a>
+        </div>
+    </div>
+    <div class="column">
+    </div>
+</div>
+{% endblock %}

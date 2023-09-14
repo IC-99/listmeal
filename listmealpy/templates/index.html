@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block section %}
+<div class="columns">
+    <div class="column"></div>
+    <div class="column is-one-third">
+        <div>
+            <h2 class="title">Salve da ListMeal</h2>
+            <p>opzioni:</p>
+        </div>
+        <div style="margin: 10pt">
+            <a href="{{ url_for('add_meal')}}">
+                <button class="button is-link">programma un pasto</button>
+            </a>
+        </div>
+        <div style="margin: 10pt">
+            <a href="{{ url_for('recipe_catalogue')}}">
+                <button class="button is-link">gestisci catalogo</button>
+            </a>
+        </div>
+        <div style="margin: 10pt">
+            <a href="{{ url_for('index')}}">
+                <button class="button is-link">elabora la mia lista della spesa</button>
+            </a>
+        </div>
+        <div style="margin: 10pt">
+            <a href="{{ url_for('index')}}">
+                <button class="button is-link">aggiorna la mia dispensa</button>
+            </a>
+        </div>
+
+    </div>
+    <div class="column">
+    </div>
+</div>
+{% endblock %}

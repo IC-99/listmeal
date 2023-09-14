@@ -9,3 +9,6 @@ class Recipe:
         self.typology = typology
         self.difficulty = difficulty
         self.ingredients = ingredients
+
+    def add_ingredient(self, ingredient: IngredientForRecipe):
+        self.ingredients.append(ingredient)

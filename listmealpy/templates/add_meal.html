@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% block section %}
+<div class="columns">
+    <div class="column"></div>
+    <div class="column is-one-third">
+        <div>
+            <h2 class="title">Aggiungi un pasto</h2>
+            <p>  </p>
+        </div>
+        
+        <form action="{{ url_for('add_meal') }}" method="POST" enctype="multipart/form-data">
+            <div class="field">
+                <label class="label">Scegli il giorno</label>
+                <div>
+                    <input type="date" id="date" name="date" value="{{ today }}" min="2023-01-01" max="2099-12-31" />
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Scegli il pasto:</label>
+                <select name="meal" id="meal" >
+                    <option value="pranzo" selected>Pranzo</option>
+                    <option value="cena">Cena</option>
+                </select>
+            </div>
+            <div class="field">
+                <label class="label">Scegli l'antipasto:</label>
+                <select name="appetizer" id="appetizer" >
+                    <option value="" selected>Nessun antipasto</option>
+                    {% for appetizer in appetizers %}
+                        <option value="{{appetizer}}">{{appetizer}}</option>"
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="field">
+                <label class="label">Scegli il primo piatto:</label>
+                <select name="first_course" id="first_course" >
+                    <option value="" selected>Nessun primo piatto</option>
+                    {% for first_course in first_courses %}
+                        <option value="{{first_course}}">{{first_course}}</option>"
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="field">
+                <label class="label">Scegli il secondo piatto:</label>
+                <select name="second_course" id="second_course" >
+                    <option value="" selected>Nessun secondo piatto</option>
+                    {% for second_course in second_courses %}
+                        <option value="{{second_course}}">{{second_course}}</option>"
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="field">
+                <label class="label">Scegli il contorno:</label>
+                <select name="side_course" id="side_course" >
+                    <option value="" selected>Nessun contorno</option>
+                    {% for side_course in side_courses %}
+                        <option value="{{side_course}}">{{side_course}}</option>"
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="field">
+                <label class="label">Scegli il dolce:</label>
+                <select name="dessert" id="dessert" >
+                    <option value="" selected>Nessun dolce</option>
+                    {% for dessert in desserts %}
+                        <option value="{{dessert}}">{{dessert}}</option>"
+                    {% endfor %}
+                </select>
+            </div>
+
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul class=flashes>
+                {% for message in messages %}
+                <p style="color : red" class="help">{{ message }}</p>
+                <br>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {% endwith %}
+
+            <div class="field">
+                <div class="control">
+                    <button class="button is-link" type="submit">Invia</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="column">
+    </div>
+</div>
+{% endblock %}

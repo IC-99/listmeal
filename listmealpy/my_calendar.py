@@ -2,7 +2,7 @@ import datetime
 
 from day import Day
 
-class Calendar:
+class MyCalendar:
 
     def __init__(self, past: dict = {}, future: dict = {}) -> None:
         self.today = self.get_today()
@@ -13,6 +13,9 @@ class Calendar:
 
     def get_today(self) -> datetime.date:
         return datetime.datetime.now().date()
+    
+    def get_today_str(self) -> str:
+        return self.get_today().strftime("%Y-%m-%d")
 
     def sort_calendar(self) -> None:
         dict(sorted(self.past.items(), reverse=True))

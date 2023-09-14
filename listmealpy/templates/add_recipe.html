@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block section %}
+<div class="columns">
+    <div class="column"></div>
+    <div class="column is-one-third">
+        <div>
+            <h2 class="title">Aggiungi un pasto</h2>
+            <p>  </p>
+        </div>
+        
+        <form action="{{ url_for('add_recipe') }}" method="POST" enctype="multipart/form-data">
+            <div class="field">
+                <label class="label">Nome</label>
+                <div>
+                    <input name="recipe_name" id="recipe_name" name="date"/>
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Categoria:</label>
+                <select name="recipe_category" id="recipe_category">
+                    <option value="appetizer">Antipasto</option>
+                    <option value="first_course" selected>Primo piatto</option>
+                    <option value="second_course">Secondo piatto</option>
+                    <option value="side_course">Contorno</option>
+                    <option value="dessert">Dolce</option>
+                </select>
+            </div>
+            <div class="field">
+                <label class="label">Tipologia:</label>
+                <select name="recipe_typology" id="recipe_typology">
+                    <option value="vegetarian" selected>Vegetariano</option>
+                    <option value="meat">Carne</option>
+                    <option value="fish">Pesce</option>
+                </select>
+            </div>
+            <div class="field">
+                <label class="label">Difficoltà:</label>
+                <select name="recipe_difficulty" id="recipe_difficulty">
+                    <option value="easy" selected>Facile</option>
+                    <option value="medium">Media</option>
+                    <option value="hard">Difficile</option>
+                </select>
+            </div>
+
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul class=flashes>
+                {% for message in messages %}
+                <p style="color : red" class="help">{{ message }}</p>
+                <br>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {% endwith %}
+
+            <div class="field">
+                <div class="control">
+                    <button class="button is-link" type="submit">Invia</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="column">
+    </div>
+</div>
+{% endblock %}
