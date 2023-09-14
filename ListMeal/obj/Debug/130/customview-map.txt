@@ -1,5 +1,7 @@
 adaptive-icon;obj\Debug\130\res\mipmap-anydpi-v26\ic_launcher.xml
 adaptive-icon;obj\Debug\130\res\mipmap-anydpi-v26\ic_launcher_round.xml
+androidx.coordinatorlayout.widget.CoordinatorLayout;obj\Debug\130\res\layout\activity_main.xml
+androidx.viewpager.widget.ViewPager;obj\Debug\130\res\layout\activity_main.xml
 background;obj\Debug\130\res\mipmap-anydpi-v26\ic_launcher.xml
 background;obj\Debug\130\res\mipmap-anydpi-v26\ic_launcher_round.xml
 cache-path;C:\Users\ivanc\Documents\GitHub\listmeal\ListMeal\obj\Debug\130\lp\38\jl\res\xml\xamarin_essentials_fileprovider_file_paths.xml
