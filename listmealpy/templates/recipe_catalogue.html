@@ -12,7 +12,15 @@
             <label class="label">Antipasti:</label>
                 {% for course in appetizers %}
                     <div>
-                        <div><b>{{course["name"]}}</b> ({{course["typology"]}}, {{course["difficulty"]}})</div>
+                        <div>
+                            <a style="color: #000000; font-weight: 700;" href="/recipe/appetizer/{{course["name"]}}" 
+                                <b>{{course["name"]}}</b> 
+                            </a>
+                            ({{course["typology"]}}, {{course["difficulty"]}})
+                            <a href="/remove/appetizer/{{course["name"]}}">
+                                <button class="delete"></button>
+                            </a>
+                        </div>
                         {% for ingredient in course["ingredients"] %}
                         <div>- {{ingredient["name"]}}: {{ingredient["amount"]}} {{ingredient["unit"]}}</div>
                         {% endfor %}
@@ -23,7 +31,15 @@
             <label class="label">Primi piatti:</label>
                 {% for course in first_courses %}
                     <div>
-                        <div><b>{{course["name"]}}</b> ({{course["typology"]}}, {{course["difficulty"]}})</div>
+                        <div>
+                            <a style="color: #000000; font-weight: 700;" href="/recipe/first_course/{{course["name"]}}" 
+                                <b>{{course["name"]}}</b> 
+                            </a>
+                            ({{course["typology"]}}, {{course["difficulty"]}})
+                            <a href="/remove/first_course/{{course["name"]}}">
+                                <button class="delete"></button>
+                            </a>
+                        </div>
                         {% for ingredient in course["ingredients"] %}
                         <div>- {{ingredient["name"]}}: {{ingredient["amount"]}} {{ingredient["unit"]}}</div>
                         {% endfor %}
@@ -34,7 +50,15 @@
             <label class="label">Secondi piatti:</label>
                 {% for course in second_courses %}
                     <div>
-                        <div><b>{{course["name"]}}</b> ({{course["typology"]}}, {{course["difficulty"]}})</div>
+                        <div>
+                            <a style="color: #000000; font-weight: 700;" href="/recipe/second_course/{{course["name"]}}" 
+                                <b>{{course["name"]}}</b> 
+                            </a>
+                            ({{course["typology"]}}, {{course["difficulty"]}})
+                            <a href="/remove/second_course/{{course["name"]}}">
+                                <button class="delete"></button>
+                            </a>
+                        </div>
                         {% for ingredient in course["ingredients"] %}
                         <div>- {{ingredient["name"]}}: {{ingredient["amount"]}} {{ingredient["unit"]}}</div>
                         {% endfor %}
@@ -45,7 +69,15 @@
             <label class="label">Contorni:</label>
                 {% for course in side_courses %}
                     <div>
-                        <div><b>{{course["name"]}}</b> ({{course["typology"]}}, {{course["difficulty"]}})</div>
+                        <div>
+                            <a style="color: #000000; font-weight: 700;" href="/recipe/side_course/{{course["name"]}}" 
+                                <b>{{course["name"]}}</b> 
+                            </a> 
+                            ({{course["typology"]}}, {{course["difficulty"]}})
+                            <a href="/remove/side_course/{{course["name"]}}">
+                                <button class="delete"></button>
+                            </a>
+                        </div>
                         {% for ingredient in course["ingredients"] %}
                         <div>- {{ingredient["name"]}}: {{ingredient["amount"]}} {{ingredient["unit"]}}</div>
                         {% endfor %}
@@ -56,7 +88,15 @@
             <label class="label">Dolci:</label>
                 {% for course in desserts %}
                     <div>
-                        <div><b>{{course["name"]}}</b> ({{course["typology"]}}, {{course["difficulty"]}})</div>
+                        <div>
+                            <a style="color: #000000; font-weight: 700;" href="/recipe/dessert/{{course["name"]}}" 
+                                <b>{{course["name"]}}</b> 
+                            </a>
+                            ({{course["typology"]}}, {{course["difficulty"]}})
+                            <a href="/remove/dessert/{{course["name"]}}">
+                                <button class="delete"></button>
+                            </a>
+                        </div>
                         {% for ingredient in course["ingredients"] %}
                         <div>- {{ingredient["name"]}}: {{ingredient["amount"]}} {{ingredient["unit"]}}</div>
                         {% endfor %}

@@ -78,5 +78,49 @@
         }
       ]
     }
+  ],
+  "side_course": [
+    {
+      "name": "fagiolini",
+      "typology": "vegetarian",
+      "difficulty": "easy",
+      "ingredients": [
+        {
+          "name": "fagiolini",
+          "amount": "50",
+          "unit": "g"
+        },
+        {
+          "name": "olio",
+          "amount": "15",
+          "unit": "ml"
+        }
+      ]
+    }
+  ],
+  "dessert": [],
+  "second_course": [
+    {
+      "name": "bistecca di maiale",
+      "typology": "meat",
+      "difficulty": "easy",
+      "ingredients": [
+        {
+          "name": "bistecca di maiale",
+          "amount": "100",
+          "unit": "g"
+        },
+        {
+          "name": "olio",
+          "amount": "15",
+          "unit": "ml"
+        },
+        {
+          "name": "sale",
+          "amount": "8",
+          "unit": "g"
+        }
+      ]
+    }
   ]
 }

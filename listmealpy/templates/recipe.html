@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block section %}
+<div class="columns">
+    <div class="column"></div>
+    <div class="column is-one-third">
+        <div>
+            <h2 class="title">{{recipe["name"]}}</h2>
+            <p>  </p>
+        </div>
+        <div>
+            <b>Tipologia: </b><span>{{recipe["typology"]}}</span>
+        </div>
+        <div>
+            <b>Difficoltà: </b><span>{{recipe["difficulty"]}}</span>
+        </div>   
+        <label class="label">Ingredienti:</label>
+        <div>
+            {% for ingredient in recipe["ingredients"] %}
+            <div>- {{ingredient["name"]}}: {{ingredient["amount"]}} {{ingredient["unit"]}}</div>
+            {% endfor %}
+        </div>
+
+        <form action="/recipe/{{category}}/{{recipe_name}}" method="POST" enctype="multipart/form-data">
+            <div class="field">
+                <label class="label">Nome</label>
+                <div>
+                    <input name="ingredient_name" id="ingredient_name" name="date"/>
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Quantità</label>
+                <div>
+                    <input name="ingredient_amount" id="ingredient_amount" name="date"/>
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Unità</label>
+                <div>
+                    <input name="ingredient_unit" id="ingredient_unit" name="date"/>
+                </div>
+            </div>
+
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul class=flashes>
+                {% for message in messages %}
+                <p style="color : red" class="help">{{ message }}</p>
+                <br>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {% endwith %}
+
+            <div class="field">
+                <div class="control">
+                    <button class="button is-link" type="submit">aggiungi ingrediente</button>
+                </div>
+            </div>
+        </form>
+
+        <div style="margin: 10pt">
+            <a href="{{ url_for('recipe_catalogue')}}">
+                <button class="button is-link">catalogo</button>
+            </a>
+        </div>
+    </div>
+    <div class="column">
+    </div>
+</div>
+{% endblock %}

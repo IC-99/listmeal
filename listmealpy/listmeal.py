@@ -51,7 +51,6 @@ def add_recipe():
     recipe_typology = request.form.get("recipe_typology")
     recipe_difficulty = request.form.get("recipe_difficulty")
     recipe_ingredients = []
-    print((recipe_name, recipe_category, recipe_typology, recipe_difficulty, recipe_ingredients))
     MY_KITCHEN.add_recipe(recipe_name, recipe_category, recipe_typology, recipe_difficulty, recipe_ingredients)
 
     return render_template('recipe_catalogue.html',
@@ -60,6 +59,26 @@ def add_recipe():
                             second_courses=MY_KITCHEN.get_category('second_course'),
                             side_courses=MY_KITCHEN.get_category('side_course'),
                             desserts=MY_KITCHEN.get_category('dessert'))      
+
+@LIST_MEAL.route('/remove/<category>/<recipe_name>', methods=['GET'])
+def remove_recipe(category, recipe_name):
+    MY_KITCHEN.remove_recipe(category, recipe_name)
+    return render_template('recipe_catalogue.html',
+                               appetizers=MY_KITCHEN.get_category('appetizer'),
+                               first_courses=MY_KITCHEN.get_category('first_course'),
+                               second_courses=MY_KITCHEN.get_category('second_course'),
+                               side_courses=MY_KITCHEN.get_category('side_course'),
+                               desserts=MY_KITCHEN.get_category('dessert'))
+
+@LIST_MEAL.route('/recipe/<category>/<recipe_name>', methods=['GET', 'POST'])
+def recipe(category, recipe_name):
+    if request.method == 'GET': 
+        return render_template('recipe.html', recipe=MY_KITCHEN.get_recipe(category, recipe_name), category=category, recipe_name=recipe_name)
+    ingredient_name = request.form.get("ingredient_name")
+    ingredient_amount = request.form.get("ingredient_amount")
+    ingredient_unit = request.form.get("ingredient_unit")
+    MY_KITCHEN.add_ingredient_to_recipe(category, recipe_name, ingredient_name, ingredient_amount, ingredient_unit)
+    return render_template('recipe.html', recipe=MY_KITCHEN.get_recipe(category, recipe_name), category=category, recipe_name=recipe_name)
 
 if __name__ == '__main__':
     LIST_MEAL.run(debug=True, port=80, use_reloader=True)

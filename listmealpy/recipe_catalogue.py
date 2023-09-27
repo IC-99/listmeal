@@ -2,6 +2,7 @@ from typing import List
 import json
 
 from recipe import Recipe
+from ingredient_for_recipe import IngredientForRecipe
 
 class RecipeCatalogue:
     
@@ -24,6 +25,13 @@ class RecipeCatalogue:
         if category in self.catalogue:
             return self.catalogue[category]
         return []
+    
+    def get_recipe(self, category: str, name: str) -> dict:
+        if category in self.catalogue:
+            for recipe in self.catalogue[category]:
+                if recipe['name'] == name:
+                    return recipe
+        return {}
 
     def add_recipe(self, recipe: Recipe) -> None:
         recipe_entry = {}
@@ -43,3 +51,23 @@ class RecipeCatalogue:
 
         self.catalogue[recipe.category].append(recipe_entry)
         self.save_catalogue()
+
+    def remove_recipe(self, category: str, name: str) -> None:
+        if category in self.catalogue:
+            for i in range(len(self.catalogue[category])):
+                if self.catalogue[category][i]['name'] == name:
+                    self.catalogue[category].pop(i)
+                    self.save_catalogue()
+                    return
+                
+    def add_ingredient_to_recipe(self, category: str, recipe_name: str, ingredient: IngredientForRecipe):
+        ingredient_entry = {}
+        ingredient_entry['name'] = ingredient.name
+        ingredient_entry['amount'] = ingredient.amount
+        ingredient_entry['unit'] = ingredient.unit
+        if category in self.catalogue:
+            for recipe in self.catalogue[category]:
+                if recipe['name'] == recipe_name:
+                    recipe['ingredients'].append(ingredient_entry)
+            self.save_catalogue()
+        
