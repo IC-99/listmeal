@@ -35,6 +35,13 @@ class RecipeCatalogue:
                 if recipe['name'] == name:
                     return recipe
         return {}
+    
+    def get_recipe_by_name(self, name: str) -> dict:
+        for category in self.catalogue:
+            for recipe in self.catalogue[category]:
+                if recipe["name"] == name:
+                    return recipe
+        return {}
 
     def add_recipe(self, recipe: Recipe) -> None:
         recipe_entry = {}

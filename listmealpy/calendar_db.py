@@ -1,7 +1,6 @@
 from typing import List
 import json
 
-from day import Day
 from meal import Meal
 
 class CalendarDb:
@@ -33,16 +32,15 @@ class CalendarDb:
                     return meal
         return {}
 
-    def add_meal(self, day: Day, meal: Meal) -> None:
-        date = day.key
-        if not date in self.calendar:
+    def add_meal(self, day: str, meal: Meal) -> None:
+        if not day in self.calendar:
             new_day = {}
             new_day[meal.name] = meal.recipes.copy()
-            self.calendar[date] = new_day
+            self.calendar[day] = new_day
         else:
-            new_day = self.calendar[date].copy()
+            new_day = self.calendar[day].copy()
             new_day[meal.name] = meal.recipes.copy()
-            self.calendar[date] = new_day
+            self.calendar[day] = new_day
         self.save_calendar()
 
     def get_data(self) -> dict:

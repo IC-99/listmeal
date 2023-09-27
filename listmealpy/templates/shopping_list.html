@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block section %}
+<div class="columns">
+    <div class="column"></div>
+    <div class="column is-one-third">
+        <div>
+            <h2 class="title">Lista della spesa</h2>
+            <p>  </p>
+        </div>
+
+        {% for ingredient_name in shopping_list_data %}
+        
+        <div style="margin: 10pt">
+            <b>{{ ingredient_name }}:</b> <span> {{shopping_list_data[ingredient_name][0]}} {{shopping_list_data[ingredient_name][1]}}</span>
+        </div>
+
+        {% endfor %}
+
+        <div style="margin: 10pt">
+            <a href="{{ url_for('index')}}">
+                <button class="button is-link">Home</button>
+            </a>
+        </div>
+    </div>
+    <div class="column">
+    </div>
+</div>
+{% endblock %}

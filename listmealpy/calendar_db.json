@@ -39,5 +39,30 @@
       "side_course": "",
       "dessert": ""
     }
+  },
+  "2023-09-30": {
+    "lunch": {
+      "appetizer": "bruschetta semplice",
+      "first_course": "pasta olio e parmigiano",
+      "second_course": "bistecca di maiale",
+      "side_course": "fagiolini",
+      "dessert": ""
+    },
+    "dinner": {
+      "appetizer": "bruschetta semplice",
+      "first_course": "",
+      "second_course": "",
+      "side_course": "fagiolini",
+      "dessert": ""
+    }
+  },
+  "2023-10-02": {
+    "dinner": {
+      "appetizer": "bruschetta semplice",
+      "first_course": "riso",
+      "second_course": "petto di pollo",
+      "side_course": "",
+      "dessert": "crepes con nutella"
+    }
   }
 }

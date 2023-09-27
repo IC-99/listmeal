@@ -1,5 +1,5 @@
 {
-  "appetizer": [
+  "appetizers": [
     {
       "name": "bruschetta semplice",
       "typology": "vegetarian",
@@ -50,7 +50,7 @@
       ]
     }
   ],
-  "first_course": [
+  "first_courses": [
     {
       "name": "pasta olio e parmigiano",
       "typology": "vegetarian",
@@ -101,27 +101,7 @@
       ]
     }
   ],
-  "side_course": [
-    {
-      "name": "fagiolini",
-      "typology": "vegetarian",
-      "difficulty": "easy",
-      "ingredients": [
-        {
-          "name": "fagiolini",
-          "amount": "50",
-          "unit": "g"
-        },
-        {
-          "name": "olio",
-          "amount": "15",
-          "unit": "ml"
-        }
-      ]
-    }
-  ],
-  "dessert": [],
-  "second_course": [
+  "second_courses": [
     {
       "name": "bistecca di maiale",
       "typology": "meat",
@@ -162,6 +142,59 @@
         {
           "name": "sale",
           "amount": "3",
+          "unit": "g"
+        }
+      ]
+    }
+  ],
+  "side_courses": [
+    {
+      "name": "fagiolini",
+      "typology": "vegetarian",
+      "difficulty": "easy",
+      "ingredients": [
+        {
+          "name": "fagiolini",
+          "amount": "50",
+          "unit": "g"
+        },
+        {
+          "name": "olio",
+          "amount": "15",
+          "unit": "ml"
+        }
+      ]
+    }
+  ],
+  "desserts": [
+    {
+      "name": "crepes con nutella",
+      "typology": "vegetarian",
+      "difficulty": "medium",
+      "ingredients": [
+        {
+          "name": "uova",
+          "amount": "1",
+          "unit": ""
+        },
+        {
+          "name": "farina",
+          "amount": "33",
+          "unit": "g"
+        },
+        {
+          "name": "latte",
+          "amount": "66",
+          "unit": "ml"
+        },
+        {
+          "name": "zucchero",
+          "amount": "5",
+          "unit": "g"
+        },
+        {
+          "name": "nutella",
+          "amount": "45",
           "unit": "g"
         }
       ]

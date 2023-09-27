@@ -25,6 +25,9 @@ class MyKitchen:
     def get_recipe_dict(self, category: str, name: str) -> dict:
         return self.recipe_catalogue.get_recipe(category, name)
     
+    def get_recipe_dict_by_name(self, name: str) -> dict:
+        return self.recipe_catalogue.get_recipe_by_name(name)
+    
     def get_recipe(self, category: str, name: str) -> Recipe:
         if not name:
             return Recipe('', category)
