@@ -2,7 +2,6 @@ from typing import List
 import json
 
 from day import Day
-from ingredient_for_recipe import IngredientForRecipe
 from meal import Meal
 
 class CalendarDb:
@@ -34,22 +33,17 @@ class CalendarDb:
                     return meal
         return {}
 
-    def add_meal(self, day: Day) -> None:
+    def add_meal(self, day: Day, meal: Meal) -> None:
         date = day.key
         if not date in self.calendar:
             new_day = {}
-            for meal in day.meals.keys():
-                meal_entry = {}
-                for category in day.meals[meal].recipes.keys():
-                    meal_entry[category] = day.meals[meal].recipes[category].name
-                new_day[meal] = meal_entry
+            new_day[meal.name] = meal.recipes.copy()
             self.calendar[date] = new_day
         else:
-            new_day = self.calendar[date]
-            for meal in day.meals.keys():
-                meal_entry = {}
-                for category in day.meals[meal].recipes.keys():
-                    meal_entry[category] = day.meals[meal].recipes[category].name
-                new_day[meal] = meal_entry
+            new_day = self.calendar[date].copy()
+            new_day[meal.name] = meal.recipes.copy()
             self.calendar[date] = new_day
         self.save_calendar()
+
+    def get_data(self) -> dict:
+        return self.calendar

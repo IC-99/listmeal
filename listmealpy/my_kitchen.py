@@ -10,6 +10,9 @@ class MyKitchen:
     def __init__(self) -> None:
         self.recipe_catalogue = RecipeCatalogue()
 
+    def get_data(self) -> dict:
+        return self.recipe_catalogue.get_data()
+
     def get_category_names(self, category: str) -> List[str]:
         category_names = []
         for recipe in self.recipe_catalogue.get_category(category):
@@ -23,6 +26,8 @@ class MyKitchen:
         return self.recipe_catalogue.get_recipe(category, name)
     
     def get_recipe(self, category: str, name: str) -> Recipe:
+        if not name:
+            return Recipe('', category)
         dict_recipe = self.get_recipe_dict(category, name)
         recipe = Recipe(dict_recipe["name"], category, dict_recipe["typology"], dict_recipe["difficulty"], [])
         for ingredient_name, ingredient_amount, ingredient_unit in dict_recipe["ingredients"]:

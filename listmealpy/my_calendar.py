@@ -2,13 +2,11 @@ import datetime
 
 from day import Day
 from calendar_db import CalendarDb
-from my_kitchen import MyKitchen
 from meal import Meal
 
 class MyCalendar:
 
-    def __init__(self, kitchen: MyKitchen, past: dict = {}, future: dict = {}) -> None:
-        self.kitchen = kitchen
+    def __init__(self, past: dict = {}, future: dict = {}) -> None:
         self.today = self.get_today()
         self.past = past
         self.future = future
@@ -63,21 +61,13 @@ class MyCalendar:
         new_day = Day(day, month, year)
         new_meal = Meal(meal_name)
 
-        if appetizer_name:
-            appetizer = self.kitchen.get_recipe('appetizer', appetizer_name)
-            new_meal.recipes['appetizer'] = appetizer
-        if first_course_name:
-            first_course = self.kitchen.get_recipe('first_course', first_course_name)
-            new_meal.recipes['first_course'] = first_course
-        if first_course_name:
-            second_course = self.kitchen.get_recipe('second_course', second_course_name)
-            new_meal.recipes['second_course'] = second_course
-        if side_course_name:
-            side_course = self.kitchen.get_recipe('side_course', side_course_name)
-            new_meal.recipes['side_course'] = side_course
-        if dessert_name:
-            dessert = self.kitchen.get_recipe('dessert', dessert_name)
-            new_meal.recipes['dessert'] = dessert
+        new_meal.add_recipe_by_category_and_name('appetizer', appetizer_name)
+        new_meal.add_recipe_by_category_and_name('first_course', first_course_name)
+        new_meal.add_recipe_by_category_and_name('second_course', second_course_name)
+        new_meal.add_recipe_by_category_and_name('side_course', side_course_name)
+        new_meal.add_recipe_by_category_and_name('dessert', dessert_name)
 
-        new_day.meals[meal_name] = new_meal
-        self.calendar.add_meal(new_day)
+        self.calendar.add_meal(new_day, new_meal)
+
+    def get_data(self) -> dict:
+        return self.calendar.get_data()

@@ -1,12 +1,43 @@
 {
   "2023-09-27": {
-    "dinner": {
-      "appetizer": "bruschetta semplice",
-      "side_course": "fagiolini"
+    "lunch": {
+      "appetizer": "",
+      "first_course": "pasta olio e parmigiano",
+      "second_course": "",
+      "side_course": "",
+      "dessert": ""
     },
+    "dinner": {
+      "appetizer": "bruschetta con pomodori",
+      "first_course": "riso",
+      "second_course": "petto di pollo",
+      "side_course": "fagiolini",
+      "dessert": ""
+    }
+  },
+  "2023-09-28": {
+    "lunch": {
+      "appetizer": "",
+      "first_course": "pasta olio e parmigiano",
+      "second_course": "",
+      "side_course": "fagiolini",
+      "dessert": ""
+    },
+    "dinner": {
+      "appetizer": "bruschetta con pomodori",
+      "first_course": "",
+      "second_course": "bistecca di maiale",
+      "side_course": "fagiolini",
+      "dessert": ""
+    }
+  },
+  "2023-09-29": {
     "lunch": {
       "appetizer": "bruschetta semplice",
-      "side_course": "fagiolini"
+      "first_course": "",
+      "second_course": "",
+      "side_course": "",
+      "dessert": ""
     }
   }
 }

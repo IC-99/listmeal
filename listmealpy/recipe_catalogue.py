@@ -21,6 +21,9 @@ class RecipeCatalogue:
         with open(self.file_name, 'w') as out_file:
             out_file.write(json_object)
     
+    def get_data(self) -> None:
+        return self.catalogue
+
     def get_category(self, category: str) -> List[dict]:
         if category in self.catalogue:
             return self.catalogue[category]

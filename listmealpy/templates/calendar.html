@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block section %}
+<div class="columns">
+    <div class="column"></div>
+    <div class="column is-one-half">
+        <div>
+            <h2 class="title">Calendario</h2>
+            <p>  </p>
+        </div>
+        
+        {% for day in calendar_data %}
+        <div style="margin: 10pt">
+            <label class="label">{{day}}:</label>
+            <div>
+                {% for meal in calendar_data[day] %}
+                <div>
+                    <b>{{ dictionary[meal] }}:</b>
+                    {% for recipe in calendar_data[day][meal] %}
+                    {% if calendar_data[day][meal][recipe] != "" %}
+                    <div>
+                        <b>- {{ dictionary[recipe] }}:</b> <span>{{ calendar_data[day][meal][recipe] }}</span>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+
+        <div style="margin: 10pt">
+            <a href="{{ url_for('add_meal')}}">
+                <button class="button is-link">aggiungi una ricetta</button>
+            </a>
+        </div>
+    </div>
+    <div class="column">
+    </div>
+</div>
+{% endblock %}

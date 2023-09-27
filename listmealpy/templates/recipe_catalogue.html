@@ -7,102 +7,30 @@
             <h2 class="title">Catalogo delle ricette</h2>
             <p>  </p>
         </div>
+
+        {% for category in catalogue_data %}
         
         <div style="margin: 10pt">
-            <label class="label">Antipasti:</label>
-                {% for course in appetizers %}
+            <label class="label">{{ dictionary[category] }}:</label>
+                {% for recipe in catalogue_data[category] %}
                     <div>
                         <div>
-                            <a style="color: #000000; font-weight: 700;" href="/recipe/appetizer/{{course["name"]}}" 
-                                <b>{{course["name"]}}</b> 
+                            <a style="color: #000000; font-weight: 700;" href="/recipe/{{category}}/{{recipe["name"]}}" 
+                                <b>{{recipe["name"]}}</b> 
                             </a>
-                            ({{course["typology"]}}, {{course["difficulty"]}})
-                            <a href="/remove/appetizer/{{course["name"]}}">
+                            ({{recipe["typology"]}}, {{recipe["difficulty"]}})
+                            <a href="/remove/appetizer/{{recipe["name"]}}">
                                 <button class="delete"></button>
                             </a>
                         </div>
-                        {% for ingredient in course["ingredients"] %}
+                        {% for ingredient in recipe["ingredients"] %}
                         <div>- {{ingredient["name"]}}: {{ingredient["amount"]}} {{ingredient["unit"]}}</div>
                         {% endfor %}
                     </div>
                 {% endfor %}
         </div>
-        <div style="margin: 10pt">
-            <label class="label">Primi piatti:</label>
-                {% for course in first_courses %}
-                    <div>
-                        <div>
-                            <a style="color: #000000; font-weight: 700;" href="/recipe/first_course/{{course["name"]}}" 
-                                <b>{{course["name"]}}</b> 
-                            </a>
-                            ({{course["typology"]}}, {{course["difficulty"]}})
-                            <a href="/remove/first_course/{{course["name"]}}">
-                                <button class="delete"></button>
-                            </a>
-                        </div>
-                        {% for ingredient in course["ingredients"] %}
-                        <div>- {{ingredient["name"]}}: {{ingredient["amount"]}} {{ingredient["unit"]}}</div>
-                        {% endfor %}
-                    </div>
-                {% endfor %}
-        </div>
-        <div style="margin: 10pt">
-            <label class="label">Secondi piatti:</label>
-                {% for course in second_courses %}
-                    <div>
-                        <div>
-                            <a style="color: #000000; font-weight: 700;" href="/recipe/second_course/{{course["name"]}}" 
-                                <b>{{course["name"]}}</b> 
-                            </a>
-                            ({{course["typology"]}}, {{course["difficulty"]}})
-                            <a href="/remove/second_course/{{course["name"]}}">
-                                <button class="delete"></button>
-                            </a>
-                        </div>
-                        {% for ingredient in course["ingredients"] %}
-                        <div>- {{ingredient["name"]}}: {{ingredient["amount"]}} {{ingredient["unit"]}}</div>
-                        {% endfor %}
-                    </div>
-                {% endfor %}
-        </div>
-        <div style="margin: 10pt">
-            <label class="label">Contorni:</label>
-                {% for course in side_courses %}
-                    <div>
-                        <div>
-                            <a style="color: #000000; font-weight: 700;" href="/recipe/side_course/{{course["name"]}}" 
-                                <b>{{course["name"]}}</b> 
-                            </a> 
-                            ({{course["typology"]}}, {{course["difficulty"]}})
-                            <a href="/remove/side_course/{{course["name"]}}">
-                                <button class="delete"></button>
-                            </a>
-                        </div>
-                        {% for ingredient in course["ingredients"] %}
-                        <div>- {{ingredient["name"]}}: {{ingredient["amount"]}} {{ingredient["unit"]}}</div>
-                        {% endfor %}
-                    </div>
-                {% endfor %}
-        </div>
-        <div style="margin: 10pt">
-            <label class="label">Dolci:</label>
-                {% for course in desserts %}
-                    <div>
-                        <div>
-                            <a style="color: #000000; font-weight: 700;" href="/recipe/dessert/{{course["name"]}}" 
-                                <b>{{course["name"]}}</b> 
-                            </a>
-                            ({{course["typology"]}}, {{course["difficulty"]}})
-                            <a href="/remove/dessert/{{course["name"]}}">
-                                <button class="delete"></button>
-                            </a>
-                        </div>
-                        {% for ingredient in course["ingredients"] %}
-                        <div>- {{ingredient["name"]}}: {{ingredient["amount"]}} {{ingredient["unit"]}}</div>
-                        {% endfor %}
-                    </div>
-                {% endfor %}
-        </div>
+
+        {% endfor %}
 
         <div style="margin: 10pt">
             <a href="{{ url_for('add_recipe')}}">
