@@ -1,15 +1,20 @@
 import datetime
 
 from day import Day
+from calendar_db import CalendarDb
+from my_kitchen import MyKitchen
+from meal import Meal
 
 class MyCalendar:
 
-    def __init__(self, past: dict = {}, future: dict = {}) -> None:
+    def __init__(self, kitchen: MyKitchen, past: dict = {}, future: dict = {}) -> None:
+        self.kitchen = kitchen
         self.today = self.get_today()
         self.past = past
         self.future = future
         self.sort_calendar()
         self.update_calendar()
+        self.calendar = CalendarDb()
 
     def get_today(self) -> datetime.date:
         return datetime.datetime.now().date()
@@ -50,3 +55,29 @@ class MyCalendar:
             else:
                 self.future[new_day.date] = []
         return True
+
+    def add_meal(self, date_name: str, meal_name: str, appetizer_name: str, first_course_name: str, second_course_name: str, side_course_name: str, dessert_name: str) -> None:
+        year = int(date_name[:4])
+        month = int(date_name[5:7])
+        day = int(date_name[8:])
+        new_day = Day(day, month, year)
+        new_meal = Meal(meal_name)
+
+        if appetizer_name:
+            appetizer = self.kitchen.get_recipe('appetizer', appetizer_name)
+            new_meal.recipes['appetizer'] = appetizer
+        if first_course_name:
+            first_course = self.kitchen.get_recipe('first_course', first_course_name)
+            new_meal.recipes['first_course'] = first_course
+        if first_course_name:
+            second_course = self.kitchen.get_recipe('second_course', second_course_name)
+            new_meal.recipes['second_course'] = second_course
+        if side_course_name:
+            side_course = self.kitchen.get_recipe('side_course', side_course_name)
+            new_meal.recipes['side_course'] = side_course
+        if dessert_name:
+            dessert = self.kitchen.get_recipe('dessert', dessert_name)
+            new_meal.recipes['dessert'] = dessert
+
+        new_day.meals[meal_name] = new_meal
+        self.calendar.add_meal(new_day)

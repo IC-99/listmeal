@@ -19,9 +19,17 @@ class MyKitchen:
     def get_category(self, category: str) -> List[dict]:
         return self.recipe_catalogue.get_category(category)
     
-    def get_recipe(self, category: str, name: str) -> dict:
+    def get_recipe_dict(self, category: str, name: str) -> dict:
         return self.recipe_catalogue.get_recipe(category, name)
     
+    def get_recipe(self, category: str, name: str) -> Recipe:
+        dict_recipe = self.get_recipe_dict(category, name)
+        recipe = Recipe(dict_recipe["name"], category, dict_recipe["typology"], dict_recipe["difficulty"], [])
+        for ingredient_name, ingredient_amount, ingredient_unit in dict_recipe["ingredients"]:
+            ingredient = IngredientForRecipe(ingredient_name, ingredient_amount, ingredient_unit)
+            recipe.add_ingredient(ingredient)
+        return recipe
+
     def add_recipe(self, name: str, category: str, typology: str, difficulty: str, ingredients: List) -> None:
         recipe = Recipe(name, category, typology, difficulty, [])
         for ingredient_name, ingredient_amount, ingredient_unit in ingredients:
@@ -35,3 +43,6 @@ class MyKitchen:
 
     def remove_recipe(self, category: str, name: str) -> None:
         self.recipe_catalogue.remove_recipe(category, name)
+
+    def remove_ingredient_form_recipe(self, category: str, recipe_name: str, ingredient_name: str) -> None:
+        self.recipe_catalogue.remove_ingredient_form_recipe(category, recipe_name, ingredient_name)

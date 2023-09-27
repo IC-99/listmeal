@@ -71,3 +71,12 @@ class RecipeCatalogue:
                     recipe['ingredients'].append(ingredient_entry)
             self.save_catalogue()
         
+    def remove_ingredient_form_recipe(self, category: str, recipe_name: str, ingredient_name: str) -> None:
+        if category in self.catalogue:
+            for recipe in self.catalogue[category]:
+                if recipe['name'] == recipe_name:
+                    for i in range(len(recipe["ingredients"])):
+                        if recipe["ingredients"][i]["name"] == ingredient_name:
+                            recipe["ingredients"].pop(i)
+                            self.save_catalogue()
+                            return

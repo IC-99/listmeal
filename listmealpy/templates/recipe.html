@@ -8,6 +8,9 @@
             <p>  </p>
         </div>
         <div>
+            <b>Categoria: </b><span>{{category}}</span>
+        </div>
+        <div>
             <b>Tipologia: </b><span>{{recipe["typology"]}}</span>
         </div>
         <div>
@@ -16,10 +19,16 @@
         <label class="label">Ingredienti:</label>
         <div>
             {% for ingredient in recipe["ingredients"] %}
-            <div>- {{ingredient["name"]}}: {{ingredient["amount"]}} {{ingredient["unit"]}}</div>
+            <div>
+                - {{ingredient["name"]}}: {{ingredient["amount"]}} {{ingredient["unit"]}}
+                <a href="/remove_ingredient_form_recipe/{{category}}/{{recipe_name}}/{{ingredient["name"]}}">
+                    <button class="delete"></button>
+                </a>
+            </div>
             {% endfor %}
         </div>
 
+        <label class="label">Aggiungi ingrediente:</label>
         <form action="/recipe/{{category}}/{{recipe_name}}" method="POST" enctype="multipart/form-data">
             <div class="field">
                 <label class="label">Nome</label>

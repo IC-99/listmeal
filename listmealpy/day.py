@@ -7,6 +7,7 @@ class Day:
     def __init__(self, day: int, month: int, year: int, meals: dict = {}) -> None:
         self.date = datetime.datetime(year, month, day)
         self.name = self.date.strftime("%A %d %B %Y")
+        self.key = self.date.strftime("%Y-%m-%d")
         self.meals = meals
 
     def add_meal(self, name: str) -> bool:

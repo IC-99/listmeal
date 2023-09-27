@@ -4,9 +4,9 @@ from recipe import Recipe
 
 class Meal:
 
-    def __init__(self, name: str, recipes: List[Recipe] = []) -> None:
+    def __init__(self, name: str, recipes: dict = {}) -> None:
         self.name = name
         self.recipes = recipes
 
     def add_course(self, recipe: Recipe):
-        self.recipes.append(recipe)
+        self.recipes[recipe.category] = recipe.name

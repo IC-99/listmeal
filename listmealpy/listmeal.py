@@ -7,8 +7,8 @@ LIST_MEAL = flask.Flask(__name__)
 LIST_MEAL.secret_key = 'chiave segreta'
 LIST_MEAL.config['SESSION_TYPE'] = 'filesystem'
 
-MY_CALENDAR = MyCalendar()
 MY_KITCHEN = MyKitchen()
+MY_CALENDAR = MyCalendar(MY_KITCHEN)
 
 @LIST_MEAL.route('/', methods=['GET', 'POST'])
 def index():
@@ -26,7 +26,21 @@ def add_meal():
                                second_courses=MY_KITCHEN.get_category_names('second_course'),
                                side_courses=MY_KITCHEN.get_category_names('side_course'),
                                desserts=MY_KITCHEN.get_category_names('dessert'))
-
+    
+    date_name = request.form.get("date")
+    meal_name = request.form.get("meal")
+    appetizer_name = request.form.get("appetizer")
+    if appetizer_name == 'Nessun antipasto': appetizer_name = None
+    first_course_name = request.form.get("first_course")
+    if first_course_name == 'Nessun primo piatto': first_course_name = None
+    second_course_name = request.form.get("second_course")
+    if second_course_name == 'Nessun secondo piatto': second_course_name = None
+    side_course_name = request.form.get("side_course")
+    if side_course_name == 'Nessun contorno': side_course_name = None
+    dessert_name = request.form.get("dessert")
+    if dessert_name == 'Nessun dolce': dessert_name = None
+    print(date_name)
+    MY_CALENDAR.add_meal(date_name, meal_name, appetizer_name, first_course_name, second_course_name, side_course_name, dessert_name)
     return render_template('result.html')
 
 @LIST_MEAL.route('/recipe_catalogue', methods=['GET', 'POST'])
@@ -70,15 +84,20 @@ def remove_recipe(category, recipe_name):
                                side_courses=MY_KITCHEN.get_category('side_course'),
                                desserts=MY_KITCHEN.get_category('dessert'))
 
+@LIST_MEAL.route('/remove_ingredient_form_recipe/<category>/<recipe_name>/<ingredient_name>', methods=['GET'])
+def remove_ingredient_form_recipe(category, recipe_name, ingredient_name):
+    MY_KITCHEN.remove_ingredient_form_recipe(category, recipe_name, ingredient_name)
+    return render_template('recipe.html', recipe=MY_KITCHEN.get_recipe_dict(category, recipe_name), category=category, recipe_name=recipe_name)
+
 @LIST_MEAL.route('/recipe/<category>/<recipe_name>', methods=['GET', 'POST'])
 def recipe(category, recipe_name):
     if request.method == 'GET': 
-        return render_template('recipe.html', recipe=MY_KITCHEN.get_recipe(category, recipe_name), category=category, recipe_name=recipe_name)
+        return render_template('recipe.html', recipe=MY_KITCHEN.get_recipe_dict(category, recipe_name), category=category, recipe_name=recipe_name)
     ingredient_name = request.form.get("ingredient_name")
     ingredient_amount = request.form.get("ingredient_amount")
     ingredient_unit = request.form.get("ingredient_unit")
     MY_KITCHEN.add_ingredient_to_recipe(category, recipe_name, ingredient_name, ingredient_amount, ingredient_unit)
-    return render_template('recipe.html', recipe=MY_KITCHEN.get_recipe(category, recipe_name), category=category, recipe_name=recipe_name)
+    return render_template('recipe.html', recipe=MY_KITCHEN.get_recipe_dict(category, recipe_name), category=category, recipe_name=recipe_name)
 
 if __name__ == '__main__':
     LIST_MEAL.run(debug=True, port=80, use_reloader=True)

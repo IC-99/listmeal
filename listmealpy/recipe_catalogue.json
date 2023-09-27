@@ -77,6 +77,28 @@
           "unit": "g"
         }
       ]
+    },
+    {
+      "name": "riso",
+      "typology": "vegetarian",
+      "difficulty": "easy",
+      "ingredients": [
+        {
+          "name": "riso",
+          "amount": "100",
+          "unit": "g"
+        },
+        {
+          "name": "sale",
+          "amount": "8",
+          "unit": "g"
+        },
+        {
+          "name": "parmigiano",
+          "amount": "40",
+          "unit": "g"
+        }
+      ]
     }
   ],
   "side_course": [
@@ -117,7 +139,29 @@
         },
         {
           "name": "sale",
-          "amount": "8",
+          "amount": "3",
+          "unit": "g"
+        }
+      ]
+    },
+    {
+      "name": "petto di pollo",
+      "typology": "meat",
+      "difficulty": "easy",
+      "ingredients": [
+        {
+          "name": "petto di pollo",
+          "amount": "100",
+          "unit": "g"
+        },
+        {
+          "name": "olio",
+          "amount": "15",
+          "unit": "ml"
+        },
+        {
+          "name": "sale",
+          "amount": "3",
           "unit": "g"
         }
       ]
